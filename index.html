@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supply Chain Inventory Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        #game-container {
+            margin-top: 50px;
+        }
+        .btn {
+            padding: 15px 30px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        #status {
+            margin: 20px 0;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Supply Chain Inventory Game</h1>
+    <div id="game-container">
+        <button class="btn" onclick="orderMaterials()">Order Materials</button>
+        <button class="btn" onclick="produceGoods()">Produce Goods</button>
+        <button class="btn" onclick="shipGoods()">Ship Goods</button>
+    </div>
+    <div id="status">
+        Materials: <span id="materials">0</span> | Goods in Production: <span id="goods">0</span> | Shipped Goods: <span id="shipped">0</span>
+    </div>
+
+    <script>
+        var materials = 0;
+        var goods = 0;
+        var shippedGoods = 0;
+
+        function updateStatus() {
+            document.getElementById('materials').textContent = materials;
+            document.getElementById('goods').textContent = goods;
+            document.getElementById('shipped').textContent = shippedGoods;
+        }
+
+        function orderMaterials() {
+            if (materials < 10) {
+                materials += 1;
+                updateStatus();
+                alert('Materials ordered! Current stock: ' + materials);
+            } else {
+                alert('Maximum materials reached!');
+            }
+        }
+
+        function produceGoods() {
+            if (materials > 0) {
+                materials -= 1;
+                goods += 1;
+                updateStatus();
+                alert('Goods in production! Current goods: ' + goods);
+            } else {
+                alert('No materials available to produce goods!');
+            }
+        }
+
+        function shipGoods() {
+            if (goods > 0) {
+                goods -= 1;
+                shippedGoods += 1;
+                updateStatus();
+                alert('Goods shipped! Total shipped: ' + shippedGoods);
+            } else {
+                alert('No goods to ship!');
+            }
+        }
+    </script>
+</body>
+</html>
